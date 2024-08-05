@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour {
 
 	public int highScore;
 
-	// Start is called before the first frame update.
 	void Start() {
 		instance = this;
 		instance.highScore = HighScoreStaticClass.HighScore;
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour {
 		Time.timeScale = initialTimeScale;
 	}
 
-	// Update is called once per frame.
 	void Update() {
 		if (scoreText != null)
 		{ 

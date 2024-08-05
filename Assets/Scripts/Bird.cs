@@ -20,13 +20,11 @@ public class Bird : MonoBehaviour
 	public bool isComputer;
 	public KeyCode enableComputer;
 
-	// Start is called before the first frame update.
 	private void Start() {
 		instance = this;
 		rigidbody = GetComponent<Rigidbody2D>();
 	}
 
-	// Update is called once per frame.
 	private void Update() {
 		if (Input.GetKeyDown(enableComputer))
 		{

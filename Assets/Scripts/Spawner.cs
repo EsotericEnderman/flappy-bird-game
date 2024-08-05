@@ -18,7 +18,6 @@ public class Spawner : MonoBehaviour {
 		return pipeInterval * (float)Math.Sin(Math.Pow(pipe - day, 2));
     }
 
-	// Update is called once per frame
 	void Update() {
 		if (currentTime > interval)
 		{

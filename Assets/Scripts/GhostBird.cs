@@ -17,7 +17,6 @@ public class GhostBird : MonoBehaviour
 
     private bool isDead;
 
-    // Start is called before the first frame update.
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -28,7 +27,6 @@ public class GhostBird : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame.
     void Update()
     {
         if (currentTime == 0 && inputTimes.Count == 0)
