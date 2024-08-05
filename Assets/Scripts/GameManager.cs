@@ -3,44 +3,54 @@ using TMPro;
 
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
-	public int score;
-	public TMP_Text scoreText;
-	public TMP_Text highScoreText;
+public class GameManager : MonoBehaviour
+{
 
 	public static GameManager instance;
 
 	public GameObject gameOverScreen;
 
-	public float initialTimeScale;
+	public TMP_Text scoreText;
+	public TMP_Text highScoreText;
 
-	public int highScore;
+	private readonly float initialTimeScale = 1F;
+	private readonly float gameOverTimeScale = 0.35F;
 
-	void Start() {
+	public int score = 0;
+	public int highScore = 0;
+
+	public bool isGameOver = false;
+
+	void Start()
+	{
 		instance = this;
 		instance.highScore = HighScoreStaticClass.HighScore;
 
 		Time.timeScale = initialTimeScale;
 	}
 
-	void Update() {
+	void Update()
+	{
 		if (scoreText != null)
-		{ 
+		{
 			scoreText.text = score.ToString();
 		}
 
 		highScoreText.text = HighScoreStaticClass.HighScore.ToString();
 	}
 
-	public void GameOver() {
+	public void GameOver()
+	{
 		gameOverScreen.SetActive(true);
 
-		Time.timeScale = 0.35f;
+		Time.timeScale = gameOverTimeScale;
 	}
 
-	public void StartGame() {
+	public void StartGame()
+	{
 		SceneManager.LoadScene("Flappy Bird");
 
-		Time.timeScale = 1;
+		Time.timeScale = initialTimeScale;
+		isGameOver = true;
 	}
 }

@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class MovePipes : MonoBehaviour {
-	public float pipeSpeed;
+public class MovePipes : MonoBehaviour
+{
 
-	private void Update() {
-		transform.position += Vector3.left * pipeSpeed * Time.deltaTime;
+	private readonly float pipeSpeedPerSecond = 4F;
+
+	private void Update()
+	{
+		transform.position += Vector3.left * pipeSpeedPerSecond * Time.deltaTime;
 	}
 }

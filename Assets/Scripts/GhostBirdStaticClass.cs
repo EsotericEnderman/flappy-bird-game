@@ -2,17 +2,12 @@ using System.Collections.Generic;
 
 public static class GhostBirdStaticClass
 {
-    private static List<FramePositionPair> inputTimes = new List<FramePositionPair>();
-    private static int bounceMultiplier = 200;
 
-    public static List<FramePositionPair> InputTimes {
-        get { return inputTimes; }
-        set { inputTimes = value;  }
-    }
+    private static List<FramePositionPair> inputTimes = new();
 
-    public static int BounceMultiplier
+    public static List<FramePositionPair> InputTimes
     {
-        get { return bounceMultiplier; }
-        set { bounceMultiplier = value;  }
+        get { return inputTimes; }
+        set { inputTimes = value; }
     }
 }

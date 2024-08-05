@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 254981953}
   - component: {fileID: 254981952}
   - component: {fileID: 254981951}
-  - component: {fileID: 254981950}
+  - component: {fileID: 254981956}
   m_Layer: 6
   m_Name: Bird
   m_TagString: Untagged
@@ -144,21 +144,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &254981950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254981949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fee046f22011b843be1efc01c154364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 254981954}
-  rigidbody: {fileID: 254981952}
-  bounceMultiplier: 200
 --- !u!61 &254981951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -319,6 +304,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254981956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254981949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c63c926a15f1c4385f4ab4fc2db1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: 254981952}
+  spriteRenderer: {fileID: 254981954}
 --- !u!1 &391373401
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +548,7 @@ RectTransform:
   - {fileID: 1750518542}
   - {fileID: 1063863305}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -587,7 +586,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &739324309
 MonoBehaviour:
@@ -601,12 +600,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5883c7280256bf49ae2f511e70f2e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  gameOverScreen: {fileID: 1063863304}
   scoreText: {fileID: 0}
   highScoreText: {fileID: 1750518543}
-  gameOverScreen: {fileID: 1063863304}
-  initialTimeScale: 0.35
+  score: 0
   highScore: 0
+  isGameOver: 0
 --- !u!114 &739324310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +618,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da07e2633b2f8144a8d3903375c8e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitGameKey: 27
+--- !u!1 &786224102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4898070300701411408, guid: d27454637af926c4584fa4741841e8d8, type: 3}
+  m_PrefabInstance: {fileID: 4898070300625295036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1063863304
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +836,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1176961844
 Animator:
@@ -967,7 +970,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496766087
 GameObject:
@@ -1052,7 +1055,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1496766090
 Animator:
@@ -1324,7 +1327,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1863644049
 MonoBehaviour:
@@ -1338,9 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b945e7904f4617944bcd2133f0a7580c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1.1
-  pipes: {fileID: 4898070300701411408, guid: d27454637af926c4584fa4741841e8d8, type: 3}
-  pipeInterval: 2.2
+  pipePrefab: {fileID: 786224102}
 --- !u!1001 &4898070300625295036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1355,7 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4898070300701411409, guid: d27454637af926c4584fa4741841e8d8, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4898070300701411409, guid: d27454637af926c4584fa4741841e8d8, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,37 +1,37 @@
 using UnityEngine;
 using System;
 
-public class Spawner : MonoBehaviour {
-	public float interval;
-	private float currentTime;
+using Random = System.Random;
 
-	public GameObject pipes;
+public class Spawner : MonoBehaviour
+{
 
-	public float pipeInterval;
+	public GameObject pipePrefab;
 
-	private int pipe = 1;
+	private readonly Random randomNumberGenerator = new((int)Math.Floor(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds / (1000 * 60 * 60 * 24)));
 
-	private int day = (int)Math.Floor(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds / (1000 * 60 * 60 * 24));
+	private readonly float pipeSpawnIntervalSeconds = 1F;
+	private readonly float verticalPipeInterval = 2.2F;
+	private readonly float pipeDestroyDelaySeconds = 10F;
 
-	private float PipePosition(int pipeNumber)
-    {
-		return pipeInterval * (float)Math.Sin(Math.Pow(pipe - day, 2));
-    }
+	private float timeSinceLastPipeSpawn = 0F;
 
-	void Update() {
-		if (currentTime > interval)
+	private double GetPipePosition()
+	{
+		return verticalPipeInterval * randomNumberGenerator.NextDouble();
+	}
+
+	void Update()
+	{
+		if (timeSinceLastPipeSpawn > pipeSpawnIntervalSeconds)
 		{
-			GameObject newPipe = Instantiate(pipes);
+			GameObject newPipe = Instantiate(pipePrefab);
+			newPipe.transform.position = transform.position + new Vector3(0F, (float)GetPipePosition());
+			Destroy(newPipe, pipeDestroyDelaySeconds);
 
-			newPipe.transform.position = transform.position + new Vector3(0, PipePosition(pipe));
-
-			pipe++;
-
-			Destroy(newPipe, 10);
-
-			currentTime = 0;
+			timeSinceLastPipeSpawn = 0F;
 		}
 
-		currentTime += Time.deltaTime;
+		timeSinceLastPipeSpawn += Time.deltaTime;
 	}
 }

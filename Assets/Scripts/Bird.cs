@@ -1,37 +1,32 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-	public KeyCode bounce;
-	public int bounceMultiplier;
-
-	private new Rigidbody2D rigidbody;
-
-	public SpriteRenderer spriteRenderer;
-	private float hue;
-	public float colourChangeFactor;
 
 	public static Bird instance;
 
-	private float currentTime;
-	public List<FramePositionPair> inputRecord = new List<FramePositionPair>();
+	public new Rigidbody2D rigidbody;
+	public SpriteRenderer spriteRenderer;
 
-	public bool isComputer;
-	public KeyCode enableComputer;
+	private readonly KeyCode bounce = KeyCode.Space;
+	private readonly int bounceMultiplier = 200;
+	private readonly float colourChangeFactor = 0.1F;
 
-	private void Start() {
+	private float currentTime = 0F;
+	private readonly List<FramePositionPair> inputRecord = new();
+	private float hue = 0F;
+
+	private void Start()
+	{
 		instance = this;
-		rigidbody = GetComponent<Rigidbody2D>();
 	}
 
-	private void Update() {
-		if (Input.GetKeyDown(enableComputer))
+	private void Update()
+	{
+		if ((Input.GetMouseButtonDown((int)MouseButton.Left) || Input.GetMouseButtonDown((int)MouseButton.Right) || Input.GetKeyDown(bounce)) && !GameManager.instance.isGameOver)
 		{
-			isComputer = true;
-		}
-
-		if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(bounce)) && (rigidbody.velocity.y < 4) && (Time.timeScale != 0.35f)) {
 			spriteRenderer.color = Color.HSVToRGB(hue, 1, 1);
 
 			hue += colourChangeFactor;
@@ -40,18 +35,18 @@ public class Bird : MonoBehaviour
 			rigidbody.AddForce(Vector2.up * bounceMultiplier);
 		}
 
-		inputRecord.Add(new FramePositionPair(currentTime, rigidbody.position, rigidbody.velocity));
+		inputRecord.Add(new FramePositionPair(currentTime, rigidbody.position));
 
-		currentTime+=Time.deltaTime;
+		currentTime += Time.deltaTime;
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision) {
+	private void OnCollisionEnter2D()
+	{
 		if (GameManager.instance.score >= HighScoreStaticClass.HighScore)
 		{
 			HighScoreStaticClass.HighScore = GameManager.instance.score;
 
 			GhostBirdStaticClass.InputTimes = inputRecord;
-			GhostBirdStaticClass.BounceMultiplier = bounceMultiplier;
 		}
 
 		GameManager.instance.GameOver();

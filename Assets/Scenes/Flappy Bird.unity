@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 519231476}
   - component: {fileID: 519231477}
   - component: {fileID: 519231480}
-  - component: {fileID: 519231479}
+  - component: {fileID: 519231481}
   m_Layer: 3
   m_Name: Bird
   m_TagString: Untagged
@@ -588,24 +588,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &519231479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519231473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c63c926a15f1c4385f4ab4fc2db1ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounce: 32
-  bounceMultiplier: 200
-  spriteRenderer: {fileID: 519231474}
-  colourChangeFactor: 0.05
-  isComputer: 0
-  enableComputer: 97
 --- !u!61 &519231480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -651,6 +633,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.12}
   m_EdgeRadius: 0
+--- !u!114 &519231481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519231473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c63c926a15f1c4385f4ab4fc2db1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: 519231477}
+  spriteRenderer: {fileID: 519231474}
+  bounce: 32
+  bounceMultiplier: 200
+  colourChangeFactor: 0
 --- !u!1 &631074889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,9 +1538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b945e7904f4617944bcd2133f0a7580c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 1.1
-  pipes: {fileID: 4898070300701411408, guid: d27454637af926c4584fa4741841e8d8, type: 3}
-  pipeInterval: 2.2
+  pipePrefab: {fileID: 4898070300625295037}
+  verticalPipeInterval: 2.2
 --- !u!1 &2123866584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,3 +1740,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d27454637af926c4584fa4741841e8d8, type: 3}
+--- !u!1 &4898070300625295037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4898070300701411408, guid: d27454637af926c4584fa4741841e8d8, type: 3}
+  m_PrefabInstance: {fileID: 4898070300625295036}
+  m_PrefabAsset: {fileID: 0}

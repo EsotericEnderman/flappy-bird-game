@@ -3,33 +3,25 @@ using UnityEngine;
 
 public class GhostBird : MonoBehaviour
 {
-    public List<FramePositionPair> inputTimes;
-    public static GhostBird instance;
 
     public SpriteRenderer spriteRenderer;
-
     public new Rigidbody2D rigidbody;
 
-    public int bounceMultiplier;
+    private List<FramePositionPair> inputTimes;
 
-    private float currentTime;
-    private int index;
+    private int currentIndex = 0;
+    private float currentTime = 0F;
 
-    private bool isDead;
+    private bool isDead = false;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-
         inputTimes = GhostBirdStaticClass.InputTimes;
-        bounceMultiplier = GhostBirdStaticClass.BounceMultiplier;
-
-        instance = this;
     }
 
     void Update()
     {
-        if (currentTime == 0 && inputTimes.Count == 0)
+        if (currentTime == 0F && inputTimes.Count == 0)
         {
             spriteRenderer.enabled = false;
         }
@@ -37,17 +29,17 @@ public class GhostBird : MonoBehaviour
         if (!isDead) rigidbody.velocity = Vector2.zero;
 
         // Check if the index exists in the list.
-        if ((inputTimes.Count > index) && (currentTime >= inputTimes[index].time) && (rigidbody.velocity.y < 4))
+        if ((inputTimes.Count > currentIndex) && (currentTime >= inputTimes[currentIndex].Time))
         {
-            rigidbody.position = inputTimes[index].position;
+            rigidbody.position = inputTimes[currentIndex].Position;
 
-            index++;
+            currentIndex++;
         }
 
         currentTime += Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D()
     {
         isDead = true;
     }

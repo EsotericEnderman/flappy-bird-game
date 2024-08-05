@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class Quit : MonoBehaviour {
-    public KeyCode exitGameKey;
+public class Quit : MonoBehaviour
+{
 
-    void Update() {
+    private readonly KeyCode exitGameKey = KeyCode.Escape;
+
+    void Update()
+    {
         if (Input.GetKeyDown(exitGameKey))
         {
             Application.Quit();
