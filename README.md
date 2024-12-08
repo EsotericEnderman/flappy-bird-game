@@ -1,5 +1,7 @@
 # Flappy Bird Game
 
+[![Project Status: Completed](./Assets/Badges/Status.svg)](./)
+
 > The classic Flappy Bird game remade in Unity with some of my own changes.
 
 ## License
